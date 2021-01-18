@@ -48,10 +48,12 @@ function ratesAverage(movies) {
 }
     let rates = movies.reduce(function (total, movie) {
 
-        return total + movie.rate;
+        return total + (movie.rate || 0);
     }, 0);
     return Math.round((rates / movies.length) * 100) /100; 
 } 
+
+//or, instead of Math.round: return Number(rates.toFixed(2))
 
 //console.log(ratesAverage(movies));
 
@@ -79,6 +81,7 @@ function dramaMoviesRate(moviesArray) {
 
 }
 
+// re-use the above function! return ratesAverage(dramaMovies);
 
 // console.log(dramaMoviesRate(movies));
 
@@ -96,12 +99,14 @@ function orderByYear(movies) {
     })
     return newArraySortedMoviesByYear;
 }
+// [...movies] or movies.slice() will create new array
 
 // console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesParam);
 
+// first map to get all titles, then sort localeCompare alphabetically, then slice 0-20
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
